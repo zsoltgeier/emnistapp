@@ -7,8 +7,8 @@ import numpy as np
 
 @st.cache_resource
 def load_models():
-    model_cnn = tf.keras.models.load_model('models\CNN_20_epoch_64')
-    model_cnn_augmented = tf.keras.models.load_model('models\CNN_20_epoch_64_augmented')
+    model_cnn = tf.keras.models.load_model('models/CNN_20_epoch_64')
+    model_cnn_augmented = tf.keras.models.load_model('models/CNN_20_epoch_64_augmented')
     return model_cnn, model_cnn_augmented
 
 # Load models
