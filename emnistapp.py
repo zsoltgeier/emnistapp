@@ -7,8 +7,8 @@ import numpy as np
 
 @st.cache_resource
 def load_models():
-    model_cnn = tf.keras.models.load_model(r'C:\Users\logan\emnistapp\models\CNN_20_epoch_64')
-    model_cnn_augmented = tf.keras.models.load_model(r'C:\Users\logan\emnistapp\models\CNN_20_epoch_64_augmented')
+    model_cnn = tf.keras.models.load_model('models\CNN_20_epoch_64')
+    model_cnn_augmented = tf.keras.models.load_model('models\CNN_20_epoch_64_augmented')
     return model_cnn, model_cnn_augmented
 
 # Load models
@@ -60,7 +60,7 @@ def get_prediction_and_confidence(model, image):
 def main():
     st.title("EMNIST Handwrritten Digit and Letter Recognition App")
 
-    images_folder = r"C:\Users\logan\emnistapp\class_images"
+    images_folder = 'class_images'
     image_files = [f for f in os.listdir(images_folder) if os.path.isfile(os.path.join(images_folder, f))]
     image_files_no_ext = [os.path.splitext(f)[0] for f in image_files]
 
