@@ -67,7 +67,6 @@ def main():
     key_suffix = st.session_state.get('reset_key_suffix', 0)
 
     if image_files:
-        image_files.sort(key=lambda x: (len(x), x))
         selected_image_no_ext = st.selectbox("Select an image", image_files_no_ext, key=f'select_image_{key_suffix}')
         selected_image = next((f for f in image_files if f.startswith(selected_image_no_ext)), None)
         
