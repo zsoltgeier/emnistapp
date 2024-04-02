@@ -21,10 +21,19 @@ label_map = {
     30: 'V', 31: 'W', 32: 'X', 33: 'Y', 34: 'Z'
 }
 
-# Function to get formatted prediction text
-def format_prediction(model_name, class_id, confidence):
-    label = label_map.get(class_id, "Unknown")
-    return f" **{model_name}**   Predicted Class: `{label}`   Confidence: `{confidence:.2%}` "
+
+def sort_images_by_label(images):
+    def image_sort_key(image):
+        # Extracting the basename (e.g., 'A' from 'A.png')
+        base_name = os.path.splitext(image)[0]
+        # Finding the index of each image label in the ordered label_map
+        for key, value in label_map.items():
+            if value == base_name:
+                return key
+        return len(label_map)  # Place unknown labels at the end
+
+    return sorted(images, key=image_sort_key)
+
 
 def preprocess_image(image):
     image = image.convert('L')  # Convert to grayscale
@@ -62,6 +71,8 @@ def main():
 
     images_folder = 'class_images'
     image_files = [f for f in os.listdir(images_folder) if os.path.isfile(os.path.join(images_folder, f))]
+    image_files = sort_images_by_label(image_files)
+
     image_files_no_ext = [os.path.splitext(f)[0] for f in image_files]
 
     key_suffix = st.session_state.get('reset_key_suffix', 0)
