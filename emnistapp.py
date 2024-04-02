@@ -67,7 +67,7 @@ def get_prediction_and_confidence(model, image):
     return class_id, confidence
 
 def main():
-    st.title("EMNIST Handwrritten Digit and Letter Recognition App")
+    st.title("EMNIST Handwritten Digit and Letter Recognition App")
 
     images_folder = 'class_images'
     image_files = [f for f in os.listdir(images_folder) if os.path.isfile(os.path.join(images_folder, f))]
